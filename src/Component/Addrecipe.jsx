@@ -20,7 +20,7 @@ function Addrecipe() {
   };
   const validationSchema = yup.object({
     name: yup.string().min(6).max(15).required("fill the name fields"),
-    poster: yup.string().required("fill the name poster"),
+    poster: yup.string().url().required("fill the name poster"),
     time: yup.string().required("fill the time"),
     steps: yup.array().of(yup.string().required("Cannot be empty")).required(),
     ingredientName: yup.string().required("fill the ingredient name"),
@@ -72,12 +72,14 @@ function Addrecipe() {
   }
 
   return (
-    <div class="container ">
-      <div class="row d-flex align-items-center d-flex justify-content-center">
-        <div class="col-sm-6 ">
-          <img class="img-responsive" src={chef} alt="blow" />
+    <> 
+    <div className="container_addrecipe ">
+    
+        <div className="container_image">
+          <img className="img-responsive" src={chef} alt="blow" />
         </div>
-        <div class="col-sm-6">
+        <div className="container_form" >
+      
           <form onSubmit={handleSubmit}>
             <div>
               <input
@@ -96,8 +98,9 @@ function Addrecipe() {
             <div>
               <input
                 className="form_field"
-                type="file"
+                type="url"
                 name="poster"
+                placeholder="Enter your poster url"
                 values={values.poster}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -120,7 +123,7 @@ function Addrecipe() {
                 {errors.time && touched.time ? errors.time : null}
               </p>
             </div>
-            <div> Cooking Ingredient</div>
+           
             <div className="cooking">
               <input
                 className="form_field"
@@ -232,7 +235,7 @@ function Addrecipe() {
           </form>
         </div>
       </div>
-    </div>
+      </>
   );
 }
 
