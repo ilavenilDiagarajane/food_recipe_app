@@ -41,7 +41,7 @@ function EditFromData({editdata,inputFields,steps,setInputFields,setSteps,id}) {
       };
       const validationSchema = yup.object({
         name: yup.string().min(6).max(15).required("fill the name fields"),
-        poster: yup.string().required("fill the name poster"),
+        poster: yup.string().url().required("fill the name poster"),
         time: yup.string().required("fill the time"),
         steps: yup.array().of(yup.string().required("Cannot be empty")).required(),
         ingredientName: yup.string().required("fill the ingredient name"),
@@ -112,8 +112,9 @@ function EditFromData({editdata,inputFields,steps,setInputFields,setSteps,id}) {
               <div>
                 <input
                   className="form_field"
-                  type="text"
+                  type="url"
                   name="poster"
+                  placeholder="Enter your poster url"
                   value={values.poster}
                   onChange={handleChange}
                   onBlur={handleBlur}
