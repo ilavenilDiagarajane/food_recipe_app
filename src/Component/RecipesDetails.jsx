@@ -35,6 +35,22 @@ function RecipesDetailsView({ recipesDetails }) {
   function EditRecipes(id) {
     navigate(`/editrecipe/${id}`);
   }
+  function DeleteRecipes(id) {
+    alert(id)
+    fetch(`https://624a7f84fd7e30c51c0e48a5.mockapi.io/FoodRecipe/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        navigate(`/viewrecipe`);
+      });
+  }
+  
+ 
   return (
     <>
       <Card style={{ width: "25rem" }}>
@@ -43,7 +59,7 @@ function RecipesDetailsView({ recipesDetails }) {
           <div className="Ingredients">
           <Card.Title>{recipesDetails.name}</Card.Title>
           <Card.Subtitle className="mb-2 text-muted">
-            {recipesDetails.time} mins
+          <i class="fa fa-clock-o" aria-hidden="true"></i>  {recipesDetails.time} mins
           </Card.Subtitle>
           </div>
         
@@ -69,8 +85,9 @@ function RecipesDetailsView({ recipesDetails }) {
           </Card.Text>
             )}
           </Card.Subtitle>
-          <div >
-          <Button variant="primary"  onClick={() => EditRecipes(recipesDetails.id)} >Edit</Button>
+          <div className="recipedetialbtn">
+          <button className="buttonremove"onClick={() => EditRecipes(recipesDetails.id)} ><i class="fa fa-pencil-square" aria-hidden="true"></i></button>
+          <button className="buttonremove" onClick={() => DeleteRecipes(recipesDetails.id)} >  <i class="fa fa-trash" aria-hidden="true"></i></button>
           </div>
         
         </Card.Body>
