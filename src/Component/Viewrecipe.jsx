@@ -1,6 +1,5 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
 function Viewrecipe() {
@@ -16,7 +15,7 @@ function Viewrecipe() {
   }, []);
 
   return (
-    <div>
+    <div className="recipeContainer">
       {recipesList ? <DisplayrecipeList recipesList={recipesList} /> : "null"}
     </div>
   );
@@ -37,12 +36,13 @@ function DisplayrecipeList({ recipesList }) {
         >
           <Card.Img variant="top" src={recipes.poster} />
           <Card.Body>
+            <div className="Ingredients">
             <Card.Title>{recipes.name}</Card.Title>
             <Card.Subtitle className="mb-2 text-muted">
-              {recipes.time}
-            </Card.Subtitle>
-
-            <Button variant="primary">Go somewhere</Button>
+              {recipes.time} mins
+            </Card.Subtitle> 
+            </div>
+           
           </Card.Body>
         </Card>
       ))}

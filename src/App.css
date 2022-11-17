@@ -29,10 +29,27 @@ input::file-selector-button {
     display: flex;
     gap: 30px;
 }
-.btn-remove{
+.recipeContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin: 30px;
+}
+.Ingredients{
+    display: flex;
+    justify-content: space-between;
+
+}
+.buttonremove{
     border:none;
-    color: #f78e4d;
+    background-color: #f78e4d;
     padding: 10px 20px;
     border-radius:10px;
     color:white
+}
+.dynamicinput {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    gap: 30px;
 }

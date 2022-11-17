@@ -3,15 +3,17 @@ import { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import chef from "../images/chef.png";
+import { useNavigate } from "react-router-dom";
 function Addrecipe() {
+  const navigate = useNavigate();
   const [inputFields, setInputFields] = useState([""]);
 
-  let step = new Array();
+  const[steps,setSteps] = useState([""]);
   const initialValues = {
     name: "",
     poster: "",
     time: "",
-    step: [step],
+    steps: steps,
     ingredientName: "",
     ingredientQuantity: "",
     type: "",
@@ -20,7 +22,7 @@ function Addrecipe() {
     name: yup.string().min(6).max(15).required("fill the name fields"),
     poster: yup.string().required("fill the name poster"),
     time: yup.string().required("fill the time"),
-    step: yup.array().of(yup.string().required("Cannot be empty")).required(),
+    steps: yup.array().of(yup.string().required("Cannot be empty")).required(),
     ingredientName: yup.string().required("fill the ingredient name"),
     ingredientQuantity: yup.string().required("fill the ingredient Quantity"),
     type: yup.string().required("selcet the gender"),
@@ -29,7 +31,7 @@ function Addrecipe() {
   const { values, handleChange, handleSubmit, errors, handleBlur, touched } =
     useFormik({
       initialValues,
-      validationSchema,
+       validationSchema,
       onSubmit: (values) => addRecipe(values),
     });
 
@@ -40,9 +42,16 @@ function Addrecipe() {
     console.log(inputFields);
   };
   const removeFields = (index) => {
+    console.log(index);
     let data = [...inputFields];
     data.splice(index, 1);
+    let cookingstep=[...steps]
+    values.steps.splice(index, 1)
+     cookingstep.splice(index, 1);
     setInputFields(data);
+    setSteps(cookingstep)
+    console.log(steps)
+
   };
   function addRecipe(values) {
     console.log(values);
@@ -56,6 +65,9 @@ function Addrecipe() {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        navigate(`/viewrecipe`);
+
+
       });
   }
 
@@ -86,7 +98,7 @@ function Addrecipe() {
                 className="form_field"
                 type="file"
                 name="poster"
-                values={values.resume}
+                values={values.poster}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
@@ -99,7 +111,7 @@ function Addrecipe() {
                 className="form_field"
                 type="text"
                 name="time"
-                values={values.resume}
+                values={values.time}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 placeholder="Enter your cooking time"
@@ -172,7 +184,39 @@ function Addrecipe() {
               {" "}
               <p>{errors.type && touched.type ? errors.type : null}</p>
             </div>
-            <div>
+            <div className="dynamicinput">
+               
+              <div>
+              {inputFields.map((input, index) => {
+                return (
+                  <div key={index} className="cooking">
+                    <div>
+                    <input
+                      className="form_field"
+                      name={`steps[${index}]`}
+                      placeholder="step for cooking"
+                      value={values.steps[index]}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                    <p className="error">{errors.steps && touched.steps ? errors.steps : null}</p>
+                    </div>
+                   <div>
+                   {index ? (
+                      <button
+                        type="button"
+                        className="buttonremove"
+                        onClick={() => removeFields(index)}
+                      >
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                      </button>
+                    ) : null}
+                   </div>
+                   
+                  </div>
+                );
+              })}
+                </div>      
                 <button
                       type="button"
                       onClick={addFields}
@@ -180,31 +224,6 @@ function Addrecipe() {
                     >
                       <i class="fa fa-plus" aria-hidden="true"></i>
                     </button>
-              {inputFields.map((input, index) => {
-                return (
-                  <div key={index} className="cooking">
-                    <input
-                      className="form_field"
-                      name={`step[${index}]`}
-                      placeholder="step for cooking"
-                      value={values.step[index]}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-                    <p>{errors.step && touched.step ? errors.step : null}</p>
-                    {index ? (
-                      <button
-                        type="button"
-                        className="button remove"
-                        onClick={() => removeFields(index)}
-                      >
-                        Remove
-                      </button>
-                    ) : null}
-                   
-                  </div>
-                );
-              })}
                
             </div>
             <button type="submit" className="btn-add">
