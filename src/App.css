@@ -1,7 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+*{
+    font-family: 'Poppins', sans-serif;
+   
+    
+}
 .form_field{
-    width:400px;
+    width:300px;
     height:50px;
-    border:1px solid grey;
+    border: 1px solid #80808038;
     border-radius:10px;
     color:grey
 }
@@ -28,17 +35,20 @@ input::file-selector-button {
 .cooking{
     display: flex;
     gap: 30px;
+   
 }
 .recipeContainer {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
     margin: 30px;
+    align-items: center;
+    justify-content: center;
 }
 .Ingredients{
     display: flex;
     justify-content: space-between;
-
+    align-items: center;
 }
 .buttonremove{
     border:none;
@@ -52,4 +62,84 @@ input::file-selector-button {
     align-items: flex-start;
     flex-direction: row;
     gap: 30px;
+}
+.container_addrecipe{
+    
+        display: flex;
+        align-items: center;
+      
+    
+}
+.container_image {
+    flex-basis: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container_form{
+    flex-basis: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.recipedetialbtn{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+button.buttonremove {
+    font-size: 20px;
+}
+a.link {
+    text-decoration: none;
+    font-weight: 700;
+    font-size:18px;
+}
+.logo{
+    
+    font-size: 40px;
+    font-family: 'Permanent Marker', cursive;
+}
+img.d-inline-block.align-top {
+    width: 120px;
+}
+.homeimage {
+    flex-basis: 50%;
+    display: flex;
+    align-items: center;
+    justify-content:flex-end;
+}
+.homeDescription {
+    flex-basis: 50%;
+    display: flex;
+    align-items: center;
+    justify-content:flex-start;
+}
+.homeContainer {
+    display: flex;
+}
+img.silder1 {
+    width: 17%;
+    position: absolute;
+    top: 280px;
+    right: 440px;
+}
+img.silder2 {
+    width: 18%;
+    position: absolute;
+    top: 450px;
+    right: 230px;
+}
+img.silder3 {
+    width: 18%;
+    position: absolute;
+    top: 180px;
+    right: 230px;
+}
+img.silder4 {
+    width: 13%;
+    position: absolute;
+    top: 290px;
+    right: 70px;
 }
