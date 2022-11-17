@@ -31,7 +31,7 @@ function DisplayrecipeList({ recipesList }) {
     <>
       {recipesList.map((recipes) => (
         <Card
-          style={{ width: "18rem" }}
+          style={{ width: "25rem" }}
           onClick={() => showRecipes(recipes.id)}
         >
           <Card.Img variant="top" src={recipes.poster} />
@@ -39,7 +39,7 @@ function DisplayrecipeList({ recipesList }) {
             <div className="Ingredients">
             <Card.Title>{recipes.name}</Card.Title>
             <Card.Subtitle className="mb-2 text-muted">
-              {recipes.time} mins
+            <i class="fa fa-clock-o" aria-hidden="true"></i>   {recipes.time} mins
             </Card.Subtitle> 
             </div>
            
